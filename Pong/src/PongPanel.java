@@ -21,8 +21,23 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			timer.start();
 	}
 	
+	boolean gameInitialised = false;
+	Ball ball;
+	
+	private void createObjects() {
+		ball = new Ball(getWidth(), getHeight());
+	}
+	
 	private void update() {
-		
+		if (!gameInitialised) {
+			createObjects();
+			gameInitialised = true;
+		}
+	}
+	
+	private void paintSprite(Graphics g, Sprite sprite) {
+		g.setColor(sprite.getColour());
+		g.fillRect(sprite.getXPosition(), sprite.getYPosition(), sprite.getWidth(), sprite.getHeight());
 	}
 	
 	private void paintDottedLine(Graphics g) {
@@ -38,6 +53,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		paintDottedLine(g);
+		if (gameInitialised) {
+			paintSprite(g, ball);
+		}
 	}
 	
 	@Override

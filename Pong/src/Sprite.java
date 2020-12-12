@@ -1,9 +1,13 @@
+import java.awt.Color;
+import java.awt.Rectangle;
+
 
 public class Sprite {
 	private int xPosition, yPosition;
 	private int xVelocity, yVelocity;
 	private int width, height;
 	private int initialXPosition, initialYPosition;
+	private Color colour;
 	// getter methods
 	public int getXPosition() {
 		return xPosition;
@@ -23,6 +27,7 @@ public class Sprite {
 	public int getHeight() {
 		return height;
 	}
+	public Color getColour() { return colour; }
 	
 	//setter methods
 	public void setInitialPosition (int initialX, int initialY) {
@@ -67,5 +72,11 @@ public class Sprite {
 	}
 	public void setHeight(int newHeight) {
 		height = newHeight;
+	}
+	public void setColour(Color newColour) {
+		colour = newColour;
+	}
+	public Rectangle getRectangle() {
+		return new Rectangle(getXPosition(), getYPosition(), getWidth(), getHeight());
 	}
 }
