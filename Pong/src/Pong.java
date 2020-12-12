@@ -10,9 +10,9 @@ public class Pong extends JFrame {
 		setTitle(WINDOW_TITLE);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setResizable(false);
-		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		add(new PongPanel());
+		setVisible(true);
 	}
 	
 	public static void main(String[] args) {
