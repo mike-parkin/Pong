@@ -14,8 +14,8 @@ import java.awt.Font;
 public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	
 	private final static Color BACKGROUND_COLOUR = Color.BLACK;
-	private final static int TIMER_DELAY = 500;
-	private final static int BALL_MOVEMENT_SPEED = 10;
+	private final static int TIMER_DELAY = 5;
+	private final static int BALL_MOVEMENT_SPEED = 2;
 	private final static int POINTS_TO_WIN = 11;
 	private final static int SCORE_TEXT_Y = 100;
 	private final static int SCORE_TEXT_X= 100;
@@ -24,7 +24,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private final static int WIN_TEXT_X = 200;
 	private final static int WIN_TEXT_Y = 200;
 	private final static String WIN_TEXT = "WIN!";
-	private final static int PADDLE_VELOCITY_Y = 10;
+	private final static int PADDLE_VELOCITY_Y = 2;
 	int player1Score = 0, player2Score = 0;
 	Player gameWinner;
 	
@@ -64,6 +64,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 				checkWallBounce();
 				checkPaddleBounce();
 				checkWin();
+				break;
+			}
+			case Paused: {
 				break;
 			}
 			case GameOver: {
@@ -124,7 +127,6 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	
 	@Override
 	public void keyTyped(KeyEvent event) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -139,7 +141,14 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			paddle2.setYVelocity(-PADDLE_VELOCITY_Y);
 		} else if (event.getKeyCode() == KeyEvent.VK_DOWN) {
 			paddle2.setYVelocity(PADDLE_VELOCITY_Y);
-		}	
+		}
+		if (event.getKeyCode() == KeyEvent.VK_P) {
+			if (gameState == GameState.Playing) {
+				gameState = GameState.Paused;
+			} else if (gameState == GameState.Paused) {
+				gameState = GameState.Playing;
+			}
+		}
 	}
 
 	@Override
