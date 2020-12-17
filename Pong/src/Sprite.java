@@ -56,7 +56,7 @@ public class Sprite {
 	public void setYPosition(int newY, int panelHeight) {
 		if (newY < 0) {
 			newY = 0;
-		} else if (newY > panelHeight) {
+		} else if (newY >= panelHeight) {
 			newY = panelHeight;
 		}
 		yPosition = newY;
